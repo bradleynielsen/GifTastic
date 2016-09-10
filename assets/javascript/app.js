@@ -4,6 +4,9 @@ $(document).ready( function() {
     var buttonsArray = ["dog","cat","yeti","the dude","taxation is theft"];
 
 // add buttons from array
+function gnerateButtons(){
+
+
     for (var i = 0; i < buttonsArray.length; i++) {
         var b = $('<button>');
         b.addClass('gif-button');
@@ -13,7 +16,8 @@ $(document).ready( function() {
         b.text(buttonsArray[i]);
         $("#buttons").append(b);
     };
-
+}
+gnerateButtons();
 //functions
     //add gifs to div
 
@@ -74,8 +78,13 @@ $(document).on('click', '.gif', function(){
 
  $(document).on("click", '#submitNewThingButton', function(){
     var newThing= $("#thing-input").val();
-    newThing.push(buttonsArray);
+    console.log(buttonsArray);
     console.log(newThing);
+    buttonsArray.push(newThing);
+    console.log(buttonsArray);
+    $('#buttons').empty();
+    gnerateButtons();
+
     event.preventDefault();
  });
 
