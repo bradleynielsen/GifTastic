@@ -1,4 +1,5 @@
 $(document).ready( function() {
+
 //Global Variables
     var buttons = ["dog","cat","yeti","the dude","taxation is theft"];
 
@@ -8,7 +9,7 @@ $(document).ready( function() {
         b.addClass('gif-button');
         b.addClass('btn-lg');
         b.addClass('btn-primary');
-        b.attr('data-gifName', buttons[i]);
+        b.attr('data-name', buttons[i]);
         b.text(buttons[i]);
         $("#buttons").append(b);
     };
@@ -18,12 +19,12 @@ $(document).ready( function() {
 
     $(document).on("click", '.gif-button', function(){
         $("#gifs").empty();
-        var apiSearchText = $(this).data("gifName");
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q="+apiSearchText+"&api_key=dc6zaTOxFJmzC&limit=10"
+        var apiSearchText = $(this).data('name');
         console.log(apiSearchText);
-        //aaaaaaaajjjjjjjaaaaaaxxxxxx!!!!!
-        $.ajax({
-            url:queryURL, method: 'GET'}).done(function(response){
+
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q="+apiSearchText+"&api_key=dc6zaTOxFJmzC&limit=10"
+
+        $.ajax({url:queryURL, method: 'GET'}).done(function(response){
             console.log(queryURL);
 
             //magic here
@@ -41,7 +42,12 @@ $(document).ready( function() {
 
                 //gif image
                 var gifImage = $('<img>');
-                gifImage.attr('src', response[i].images.fixed_height.url);
+                        gifImage.attr('src', response[i].images.fixed_height_still.url);
+                        gifImage.attr('data-still', response[i].images.fixed_height_still.url);
+                        gifImage.attr('data-animate', response[i].images.fixed_height.url);
+                        gifImage.attr('data-state','still');
+                        gifImage.addClass('gif');
+
                 // add start stop here
 
 
@@ -50,13 +56,31 @@ $(document).ready( function() {
 
             $('#gifs').prepend(gifDiv);               
             }
-        })
-    })
+        });
+    });
+
+
 
 
 
 // start gif
 // stop gif
+
+
+ 
+$(document).on('click', '.gif', function(){
+
+                       var state = $(this).attr('data-state');
+   
+                           if ( state == 'still'){
+                               $(this).attr('src', $(this).data('animate'));
+                               $(this).attr('data-state', 'animate');
+                           }else{
+                               $(this).attr('src', $(this).data('still'));
+                               $(this).attr('data-state', 'still');
+                           }
+});
+
 
 
 // add new button
