@@ -1,16 +1,16 @@
 $(document).ready( function() {
 
 //Global Variables
-    var buttons = ["dog","cat","yeti","the dude","taxation is theft"];
+    var buttonsArray = ["dog","cat","yeti","the dude","taxation is theft"];
 
 // add buttons from array
-    for (var i = 0; i < buttons.length; i++) {
+    for (var i = 0; i < buttonsArray.length; i++) {
         var b = $('<button>');
         b.addClass('gif-button');
         b.addClass('btn-lg');
         b.addClass('btn-primary');
-        b.attr('data-name', buttons[i]);
-        b.text(buttons[i]);
+        b.attr('data-name', buttonsArray[i]);
+        b.text(buttonsArray[i]);
         $("#buttons").append(b);
     };
 
@@ -42,11 +42,11 @@ $(document).ready( function() {
 
                 //gif image
                 var gifImage = $('<img>');
-                        gifImage.attr('src', response[i].images.fixed_height_still.url);
-                        gifImage.attr('data-still', response[i].images.fixed_height_still.url);
-                        gifImage.attr('data-animate', response[i].images.fixed_height.url);
-                        gifImage.attr('data-state','still');
-                        gifImage.addClass('gif');
+                    gifImage.attr('src', response[i].images.fixed_height_still.url);
+                    gifImage.attr('data-still', response[i].images.fixed_height_still.url);
+                    gifImage.attr('data-animate', response[i].images.fixed_height.url);
+                    gifImage.attr('data-state','still');
+                    gifImage.addClass('gif inline-block');
 
                 // add start stop here
 
@@ -59,15 +59,6 @@ $(document).ready( function() {
         });
     });
 
-
-
-
-
-// start gif
-// stop gif
-
-
- 
 $(document).on('click', '.gif', function(){
 
                        var state = $(this).attr('data-state');
@@ -81,7 +72,12 @@ $(document).on('click', '.gif', function(){
                            }
 });
 
-
+ $(document).on("click", '#submitNewThingButton', function(){
+    var newThing= $("#thing-input").val();
+    newThing.push(buttonsArray);
+    console.log(newThing);
+    event.preventDefault();
+ });
 
 // add new button
     //add to array from input
