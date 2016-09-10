@@ -1,7 +1,7 @@
 $(document).ready( function() {
 
 //Global Variables
-    var buttonsArray = ["statism is a religion","voluntaryism","freedom","liberty","taxation is theft"];
+    var buttonsArray = ["libertarian","freedom","liberty","taxation is theft"];
 
 // add buttons from array
 function gnerateButtons(){
@@ -24,9 +24,11 @@ gnerateButtons();
     $(document).on("click", '.gif-button', function(){
         $("#gifs").empty();
         var apiSearchText = $(this).data('name');
+        var numberOfResults = $("#numberOfResults").val();
         console.log(apiSearchText);
 
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q="+apiSearchText+"&api_key=dc6zaTOxFJmzC&limit=10"
+
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q="+apiSearchText+"&api_key=dc6zaTOxFJmzC&limit="+numberOfResults
 
         $.ajax({url:queryURL, method: 'GET'}).done(function(response){
             console.log(queryURL);
@@ -39,6 +41,9 @@ gnerateButtons();
             for (var i = 0; i < response.length; i++) {
                 
                 var gifDiv = $("<div>");
+                gifDiv.addClass("col-lg-4");
+
+             
 
                 //rating
                 var gifRating = response[i].rating;
@@ -50,7 +55,8 @@ gnerateButtons();
                     gifImage.attr('data-still', response[i].images.fixed_height_still.url);
                     gifImage.attr('data-animate', response[i].images.fixed_height.url);
                     gifImage.attr('data-state','still');
-                    gifImage.addClass('gif inline-block');
+                    gifImage.addClass('gif');
+
 
                 // add start stop here
 
