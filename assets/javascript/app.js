@@ -8,7 +8,7 @@ $(document).ready( function() {
         b.addClass('gif-button');
         b.addClass('btn-lg');
         b.addClass('btn-primary');
-        b.attr('data-gifAnimalName', buttons[i]);
+        b.attr('data-gifName', buttons[i]);
         b.text(buttons[i]);
         $("#buttons").append(b);
     };
@@ -16,14 +16,15 @@ $(document).ready( function() {
 //functions
     //add gifs to div
 
-    $('.gif-button').on("click", function(){
+    $(document).on("click", '.gif-button', function(){
         $("#gifs").empty();
-        var apiSearchText = $(this).data("data-gifAnimalName");
+        var apiSearchText = $(this).data("gifName");
         var queryURL = "http://api.giphy.com/v1/gifs/search?q="+apiSearchText+"&api_key=dc6zaTOxFJmzC&limit=10"
-        
+        console.log(apiSearchText);
         //aaaaaaaajjjjjjjaaaaaaxxxxxx!!!!!
         $.ajax({
             url:queryURL, method: 'GET'}).done(function(response){
+            console.log(queryURL);
 
             //magic here
             var response = response.data;
@@ -44,13 +45,10 @@ $(document).ready( function() {
                 // add start stop here
 
 
-                gifDiv.append(p)
-                gifDiv.append(gifImage)
+                gifDiv.append(p);
+                gifDiv.append(gifImage);
 
-            $('#gifsAppearHere').prepend(gifDiv);
-
-            $("#gifs").append(gifImage)
-               
+            $('#gifs').prepend(gifDiv);               
             }
         })
     })
