@@ -1,7 +1,7 @@
 $(document).ready( function() {
 
 //Global Variables
-    var buttonsArray = ["libertarian","freedom","liberty","taxation is theft"];
+    var buttonsArray = ["hillary clinton","war","election","trump","taxation", "theft"];
 
 // add buttons from array
 function gnerateButtons(){
