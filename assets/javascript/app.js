@@ -78,13 +78,10 @@ $(document).on('click', '.gif', function(){
 
  $(document).on("click", '#submitNewThingButton', function(){
     var newThing= $("#thing-input").val();
-    console.log(buttonsArray);
-    console.log(newThing);
     buttonsArray.push(newThing);
-    console.log(buttonsArray);
     $('#buttons').empty();
-    gnerateButtons();
-
+    $('#thing-input').empty();
+    gnerateButtons();    
     event.preventDefault();
  });
 
