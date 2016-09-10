@@ -1,7 +1,7 @@
 $(document).ready( function() {
 
 //Global Variables
-    var buttonsArray = ["dog","cat","yeti","the dude","taxation is theft"];
+    var buttonsArray = ["statism is a religion","voluntaryism","freedom","liberty","taxation is theft"];
 
 // add buttons from array
 function gnerateButtons(){
